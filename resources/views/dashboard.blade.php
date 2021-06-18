@@ -6,7 +6,7 @@
 @endpush
 @section('content')
 <!-- BEGIN: Content-->
-<div class="app-content content file-manager-application">
+<div class="app-content content file-manager-application" style="padding: calc(2rem + 4.45rem + 1.3rem) 2rem 0; };">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-area-wrapper">
@@ -65,45 +65,18 @@
                                 </a>
                             </div>
                             <div class="list-group list-group-labels">
-                                <h6 class="section-label px-2 mb-1">Labels</h6>
-                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
-                                    <i data-feather="file-text" class="mr-50 font-medium-3"></i>
-                                    <span class="align-middle">Documents</span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
-                                    <i data-feather="image" class="mr-50 font-medium-3"></i>
-                                    <span class="align-middle">Images</span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
-                                    <i data-feather="video" class="mr-50 font-medium-3"></i>
-                                    <span class="align-middle">Videos</span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
-                                    <i data-feather="music" class="mr-50 font-medium-3"></i>
-                                    <span class="align-middle">Audio</span>
-                                </a>
+                                <h6 class="section-label px-2 mb-1">Categories</h6>
                                 <a href="javascript:void(0)" class="list-group-item list-group-item-action">
                                     <i data-feather="layers" class="mr-50 font-medium-3"></i>
                                     <span class="align-middle">Archives</span>
                                 </a>
+                                <a href="javascript:void(0)"
+                                    class="list-group-item list-group-item-action text-primary">
+                                    <i data-feather="plus" class="mr-50 font-medium-3"></i>
+                                    <span class="align-middle">Create New</span>
+                                </a>
                             </div>
-                            <!-- links for file manager sidebar ends -->
 
-                            <!-- storage status of file manager starts-->
-                            <div class="storage-status mb-1 px-2">
-                                <h6 class="section-label mb-1">Storage Status</h6>
-                                <div class="d-flex align-items-center cursor-pointer">
-                                    <i data-feather="server" class="font-large-1"></i>
-                                    <div class="file-manager-progress ml-1">
-                                        <span>68GB used of 100GB</span>
-                                        <div class="progress progress-bar-primary my-50" style="height: 6px">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="80"
-                                                aria-valuemin="80" aria-valuemax="100" style="width: 80%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- storage status of file manager ends-->
                         </div>
                         <!-- side bar list items ends  -->
                         <!-- sidebar menu links ends -->
@@ -112,6 +85,7 @@
 
             </div>
         </div>
+        
         <div class="content-right">
             <div class="content-wrapper">
                 <div class="content-header row">

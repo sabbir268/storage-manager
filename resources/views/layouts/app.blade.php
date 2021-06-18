@@ -52,7 +52,7 @@
     @if (auth()->check())
 
     @include('layouts.topnav')
-    @include('layouts.mainnav')
+    {{-- @include('layouts.mainnav') --}}
 
     @endif
 
