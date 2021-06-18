@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('theme/css/themes/semi-dark-layout.css')}}">
 
     <!-- BEGIN: Page CSS-->
-
+    @toastr_css
     @stack('styles')
     <!-- END: Page CSS-->
 
@@ -94,5 +94,9 @@
             }
         })
 </script>
+
+@jquery
+@toastr_js
+@toastr_render
 
 </html>
