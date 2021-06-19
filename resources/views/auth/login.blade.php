@@ -83,24 +83,15 @@
                                 </a>
                             </p>
 
-                            {{-- <div class="divider my-2">
+                            <div class="divider my-2">
                                 <div class="divider-text">or</div>
                             </div>
 
                             <div class="auth-footer-btn d-flex justify-content-center">
-                                <a href="javascript:void(0)" class="btn btn-facebook">
-                                    <i data-feather="facebook"></i>
+                                <a href="{{route('google.auth')}}" class="btn btn-google btn-block">
+                                    <i class="fab fa-google"></i> Sgin in with google
                                 </a>
-                                <a href="javascript:void(0)" class="btn btn-twitter white">
-                                    <i data-feather="twitter"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-google">
-                                    <i data-feather="mail"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-github">
-                                    <i data-feather="github"></i>
-                                </a>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <!-- /Login v1 -->
