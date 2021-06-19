@@ -16,7 +16,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subCategories = SubCategory::paginate(20);
-        return view('dashboard.subcategory.create', compact('subCategories'));
+        return view('dashboard.subcategory.index', compact('subCategories'));
     }
 
     /**
@@ -66,12 +66,18 @@ class SubCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param  \App\Models\SubCategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCategory $subCategory)
+    public function edit(SubCategory $subcategory)
     {
-        //
+        if ($subcategory) {
+            return view('dashboard.subcategory.edit', compact('subcategory'));
+        } else {
+            toastr()->warning('Sub Category not found');
+        }
+
+        return back();
     }
 
     /**
@@ -83,7 +89,23 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, SubCategory $subCategory)
     {
-        //
+        ddd($request);
+        $request->validate([
+            'category_id' => 'required',
+            'name' => 'required'
+        ]);
+
+        if ($subCategory) {
+            if ($subCategory->update(['name' => $request->name, 'category_id'=> $request->category_id])) {
+                toastr()->success('Sub Category updated successfully');
+            } else {
+                toastr()->error('Sub Category update failed');
+            }
+        } else {
+            toastr()->warning('Sub Category not found');
+        }
+
+        return back();
     }
 
     /**

@@ -10,7 +10,7 @@
             <div class="sidebar-toggle d-block d-xl-none float-left align-middle ml-1">
                 <i data-feather="menu" class="font-medium-5"></i>
             </div>
-            <x-breadcrumb pageText="All Category" />
+            <x-breadcrumb pageText="All Sub Category" />
         </div>
     </div>
     <!-- search area ends here -->
@@ -24,34 +24,37 @@
                             <tr>
                                 <th class="text-center">Sl.</th>
                                 <th class="text-center">Name</th>
+                                <th class="text-center">Category ID</th>
                                 <th class="text-center">Total Files</th>
-                                <th class="text-center">Craeted At</th>
+                                <th class="text-center">Created At</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($subCategories as $subcategory)
                             <tr>
-                                <td class="text-center">{{$category->id}}</td>
+                                <td class="text-center">{{$subcategory->id}}</td>
 
-                                <td class="text-center">{{$category->name}}</td>
+                                <td class="text-center">{{$subcategory->name}}</td>
+
+                                <td class="text-center">{{$subcategory->category_id}}</td>
 
                                 <td class="text-center">0</td>
 
-                                <td class="text-center">{{$category->created_at}}</td>
+                                <td class="text-center">{{$subcategory->created_at}}</td>
 
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="{{route('category.edit', $category->id)}}"
+                                        <a href="{{route('subcategory.edit', $subcategory->id)}}"
                                             class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
 
-                                        <form action="{{route('category.destroy', $category->id)}}"
-                                            id="categoryDelete-{{$category->id}}" method="POST">
+                                        <form action="{{route('subcategory.destroy', $subcategory->id)}}"
+                                            id="subcategoryDelete-{{$subcategory->id}}" method="POST">
                                             @csrf
                                             @method('delete')
                                         </form>
                                         <button class="btn btn-danger btn-sm"
-                                            onclick="getElementById('categoryDelete-{{$category->id}}').submit()"><i
+                                            onclick="getElementById('subcategoryDelete-{{$subcategory->id}}').submit()"><i
                                                 class="fa fa-trash"></i></button>
 
                                     </div>

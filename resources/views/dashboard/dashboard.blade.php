@@ -81,21 +81,21 @@
                                     <span class="align-middle">Create Category</span>
                                 </a>
 
-                                {{-- Code for sub category --}}
-{{--                                <h6 class="section-label px-2 mb-1 d-flex justify-content-between">--}}
-{{--                                    <span>Sub Categories</span>--}}
-{{--                                    <a href="{{route('category.index')}}"--}}
-{{--                                        class="badge-info badge-sm rounded px-1 text-capitalize"> View All</a>--}}
-{{--                                </h6>--}}
-{{--                                @php--}}
-{{--                                $categories = \App\Models\Category::orderBy('id','asc')->limit(10)->get();--}}
-{{--                                @endphp--}}
-{{--                                @foreach ($categories as $category)--}}
-{{--                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">--}}
-{{--                                    <i data-feather="layers" class="mr-50 font-medium-3"></i>--}}
-{{--                                    <span class="align-middle">{{$category->name}}</span>--}}
-{{--                                </a>--}}
-{{--                                @endforeach--}}
+{{--                            Code for sub category --}}
+                                <h6 class="section-label px-2 mb-1 mt-3 d-flex justify-content-between">
+                                    <span>Sub Categories</span>
+                                    <a href="{{route('subcategory.index')}}"
+                                        class="badge-info badge-sm rounded px-1 text-capitalize"> View All</a>
+                                </h6>
+                                @php
+                                $subcategories = \App\Models\SubCategory::orderBy('id','asc')->limit(10)->get();
+                                @endphp
+                                @foreach ($subcategories as $subcategory)
+                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
+                                    <i data-feather="layers" class="mr-50 font-medium-3"></i>
+                                    <span class="align-middle">{{$subcategory->name}}</span>
+                                </a>
+                                @endforeach
                                 <a href="{{route('subcategory.create')}}"
                                     class="list-group-item list-group-item-action text-primary">
                                     <i data-feather="plus" class="mr-50 font-medium-3"></i>
