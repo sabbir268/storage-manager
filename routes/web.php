@@ -20,6 +20,21 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::resource('category', CategoryController::class);
+Route::resource('category', CategoryController::class)->except('show');
+
+
+Route::get('test', function () {
+    Storage::disk('google')->put('test.txt', 'Hello World');
+});
+
+Route::get('list', function () {
+    $dir = '/';
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::disk('google')->listContents($dir, $recursive));
+
+    //return $contents->where('type', '=', 'dir'); // directories
+    return $contents->where('type', '=', 'file'); // files
+});
+
 
 require __DIR__.'/auth.php';

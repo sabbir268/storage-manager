@@ -10,7 +10,9 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
+        "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
+        "nao-pon/flysystem-google-drive": "~1.1",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {

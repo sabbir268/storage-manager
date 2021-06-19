@@ -35,7 +35,7 @@
                                         autofocus />
 
                                     @error('email')
-                                    <span class="badge-warnning">{{$message}}</span>
+                                    <span class="text-warning">{{$message}}</span>
                                     @enderror
 
                                 </div>
@@ -58,7 +58,7 @@
                                         </div>
 
                                         @error('password')
-                                        <span class="badge-warnning">{{$message}}</span>
+                                        <span class="text-warning">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>
