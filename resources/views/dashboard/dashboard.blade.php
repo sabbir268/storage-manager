@@ -78,6 +78,26 @@
                                     <i data-feather="plus" class="mr-50 font-medium-3"></i>
                                     <span class="align-middle">Create New</span>
                                 </a>
+
+                                {{-- Code for sub category --}}
+                                <h6 class="section-label px-2 mb-1">Sub Categories <a href="{{route('category.index')}}"
+                                        class="badge-info badge-sm rounded px-1 text-capitalize"> View All</a>
+                                </h6>
+                                @php
+                                $categories = \App\Models\Category::orderBy('id','asc')->limit(10)->get();
+                                @endphp
+                                @foreach ($categories as $category)
+                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
+                                    <i data-feather="layers" class="mr-50 font-medium-3"></i>
+                                    <span class="align-middle">{{$category->name}}</span>
+                                </a>
+                                @endforeach
+                                <a href="{{route('category.create')}}"
+                                    class="list-group-item list-group-item-action text-primary">
+                                    <i data-feather="plus" class="mr-50 font-medium-3"></i>
+                                    <span class="align-middle">Create New</span>
+                                </a>
+                                {{-- Code for sub category end --}}
                             </div>
 
                         </div>
