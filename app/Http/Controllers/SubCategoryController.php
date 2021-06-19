@@ -38,7 +38,18 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'category_id' => 'required',
+            'name' => 'required'
+        ]);
+
+        if ($category = SubCategory::create($data)) {
+            toastr()->success('SubCategory created successfully');
+        } else {
+            toastr()->error('SubCategory creation failed');
+        }
+
+        return back();
     }
 
     /**
