@@ -145,13 +145,6 @@ class FileController extends Controller
 
     public function dirveImport(Request $request)
     {
-        // $file =  json_decode($request->toArchive[0]);
-        // $filename = $file->name;
-        // $ext = $file->extension;
-        // $filepath = $file->path;
-        // $rawData = Storage::cloud()->get($filepath);
-        // Storage::disk('public')->put($filename, $rawData);
-        // return back();
         $request->validate([
             'toArchive' => 'required',
             'category_id' => 'required',
@@ -183,6 +176,18 @@ class FileController extends Controller
             }
         }
         toastr()->success('File improted');
+        return back();
+    }
+
+    public function fileDownload(File $file)
+    {
+        if ($file) {
+            $path = str_replace("/storage/", "", $file->path);
+            return Storage::disk('public')->download($path);
+        } else {
+            toastr()->warning('File not found');
+        }
+
         return back();
     }
 }
