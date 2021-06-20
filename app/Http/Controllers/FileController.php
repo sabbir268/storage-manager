@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -81,5 +82,43 @@ class FileController extends Controller
     public function destroy(File $file)
     {
         //
+    }
+
+
+    public function dirveImport(Request $request)
+    {
+        $file =  json_decode($request->toArchive[0]);
+        // return $file->name;
+        // return $rawData = Storage::cloud()->get($request->toArchive[0]);
+        $file = json_decode($file);
+        $filename = $file->name;
+        $ext = $file->extension;
+        $filepath = $file->path;
+        $rawData = Storage::cloud()->get($filepath);
+        $completeFileName = $filename.'.'.$ext;
+        Storage::disk('public')->put($completeFileName, $rawData);
+        return back();
+        $request->validate([
+            'toArchive' => 'required',
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+        ]);
+
+        if (count($request->toArchive) < 1) {
+            toastr()->warning('No file selected');
+        } else {
+            $driveFiles = $request->toArchive;
+            foreach ($driveFiles as $key => $file) {
+                $file = json_decode($file);
+                $filename = $file->name;
+                $ext = $file->extension;
+                $filepath = $file->path;
+                $rawData = Storage::cloud()->get($filepath);
+                $completeFileName = $filename.'.'.$ext;
+                Storage::disk('public')->put($completeFileName, $rawData);
+            }
+        }
+        toastr()->success('File improted');
+        return back();
     }
 }

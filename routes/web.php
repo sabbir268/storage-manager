@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\GoogleServiceController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -24,14 +25,11 @@ Route::get('/dashboard', function () {
 
 Route::resource('category', CategoryController::class)->except('show');
 Route::resource('subcategory', SubCategoryController::class)->except('show');
+Route::resource('files', FileController::class);
+Route::post('files-import-google-drive', [FileController::class,'dirveImport'])->name('drive.import');
 
 Route::get('drive-contents', [GoogleServiceController::class, 'driveAssets'])->name('drive.contents');
 
-
-
-Route::get('test', function () {
-    Storage::disk('google')->put('test.txt', 'Hello World');
-});
 
 
 
