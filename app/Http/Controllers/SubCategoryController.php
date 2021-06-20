@@ -116,6 +116,16 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        //
+        if ($subCategory) {
+            if ($subCategory->delete()) {
+                toastr()->success('Sub Category deleted successfully');
+            } else {
+                toastr()->error('Sub Category delete failed');
+            }
+        } else {
+            toastr()->warning('Sub Category not found');
+        }
+
+        return back();
     }
 }

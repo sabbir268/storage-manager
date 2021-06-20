@@ -24,10 +24,10 @@
                     <div class="card p-3">
 
                         <form action="{{route('subcategory.update', $subcategory->id)}}" method="POST">
-                            @method('patch')
                             @csrf
+                            @method('patch')
                             <div class="form-group">
-                                <label for="category_id" class="form-label">Belongs Category</label>
+                                <label for="category_id" class="form-label">Belongs Category ID</label>
                                 <input type="text" class="form-control" disabled value="{{$subcategory->category_id}}" id="category_id"
                                        name="category_id" />
 
