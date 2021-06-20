@@ -78,6 +78,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required'
         ]);
+
         if ($category) {
             if ($category->update(['name' => $request->name ])) {
                 toastr()->success('Category updated successfully');

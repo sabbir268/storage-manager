@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GoogleServiceController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('category', CategoryController::class)->except('show');
+Route::resource('subcategory', SubCategoryController::class)->except('show');
 
 Route::get('drive-contents', [GoogleServiceController::class, 'driveAssets'])->name('drive.contents');
 
