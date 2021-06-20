@@ -84,16 +84,7 @@
 @stack('scripts')
 <!-- END: Page JS-->
 
-@jquery
-@toastr_js
-@toastr_render
-<script>
-    @if(count($errors) > 0)
-        @foreach($errors->all() as $error)
-            toastr.error("{{ $error }}");
-        @endforeach
-    @endif
-</script>
+
 <script>
     $(window).on('load', function() {
             if (feather) {
@@ -105,5 +96,15 @@
         })
 </script>
 
+@jquery
+@toastr_js
+@toastr_render
+<script>
+    @if(count($errors) > 0)
+        @foreach($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+</script>
 
 </html>
