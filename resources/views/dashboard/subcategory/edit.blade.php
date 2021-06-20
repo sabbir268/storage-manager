@@ -28,8 +28,13 @@
                             @csrf
                             <div class="form-group">
                                 <label for="category_id" class="form-label">Belongs Category</label>
-                                <input type="text" class="form-control" disabled value="{{$subcategory->category_id}}" id="category_id"
-                                       name="category_id" />
+                                <select class="custom-select" id="category_id" name="category_id">
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}"
+                                        {{$subcategory->category_id == $category->id ? 'selected' : ''}}>
+                                        {{$category->name}}</option>
+                                    @endforeach
+                                </select>
 
                                 @error('category_id')
                                 <span class="badge-warnning">{{$message}}</span>
