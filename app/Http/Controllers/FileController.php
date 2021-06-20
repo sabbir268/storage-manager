@@ -87,17 +87,13 @@ class FileController extends Controller
 
     public function dirveImport(Request $request)
     {
-        $file =  json_decode($request->toArchive[0]);
-        // return $file->name;
-        // return $rawData = Storage::cloud()->get($request->toArchive[0]);
-        $file = json_decode($file);
-        $filename = $file->name;
-        $ext = $file->extension;
-        $filepath = $file->path;
-        $rawData = Storage::cloud()->get($filepath);
-        $completeFileName = $filename.'.'.$ext;
-        Storage::disk('public')->put($completeFileName, $rawData);
-        return back();
+        // $file =  json_decode($request->toArchive[0]);
+        // $filename = $file->name;
+        // $ext = $file->extension;
+        // $filepath = $file->path;
+        // $rawData = Storage::cloud()->get($filepath);
+        // Storage::disk('public')->put($filename, $rawData);
+        // return back();
         $request->validate([
             'toArchive' => 'required',
             'category_id' => 'required',
@@ -109,13 +105,22 @@ class FileController extends Controller
         } else {
             $driveFiles = $request->toArchive;
             foreach ($driveFiles as $key => $file) {
-                $file = json_decode($file);
-                $filename = $file->name;
-                $ext = $file->extension;
-                $filepath = $file->path;
-                $rawData = Storage::cloud()->get($filepath);
-                $completeFileName = $filename.'.'.$ext;
-                Storage::disk('public')->put($completeFileName, $rawData);
+                try {
+                    $file = json_decode($file);
+                    $filename = $file->name;
+                    $ext = $file->extension;
+                    $filepath = $file->path;
+                    $rawData = Storage::cloud()->get($filepath);
+                    Storage::disk('public')->put($filename, $rawData);
+                    $newFile = new File();
+                    $newFile->name = $filename;
+                    $newFile->category_id = $request->category_id;
+                    $newFile->sub_category_id = $request->sub_category_id;
+                    $newFile->source = 'drive';
+                    $newFile->save();
+                } catch (\Throwable $th) {
+                    return $th;
+                }
             }
         }
         toastr()->success('File improted');
