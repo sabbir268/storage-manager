@@ -31,7 +31,11 @@
                         </div>
                         <div class="card-body">
                             <div class="content-wrapper">
-                                <p class="card-text text-center file-name mb-0">{{$file->name}}</p>
+                                <p class="card-text text-center file-name mb-0"> <b>Name:</b> {{$file->name}}</p>
+                                <p class="card-text text-center file-name mb-0">
+                                    <b>Category:</b>{{$file->category->name}}</p>
+                                <p class="card-text text-center file-name mb-0"> <b>Sub
+                                        Category:</b>{{$file->subCategory->name}}</p>
                             </div>
                         </div>
 
@@ -42,9 +46,10 @@
                         </form>
 
                         <div class="btn-group">
-                            <a href="{{route('files.edit',$file->id)}}" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{{route('files.edit',$file->id)}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
                             <button type="button" onclick="getElementById('fileDelete-{{$file->id}}').submit()"
-                                class="btn btn-sm btn-danger">Delete</button>
+                                class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> Delete</button>
+                            <a href="{{route('files.download',$file->id)}}" class="btn btn-sm btn-success"> <i class="fa fa-download"></i> Download</a>
                         </div>
                     </div>
                 </div>
