@@ -177,6 +177,7 @@ return [
 
 
         App\Providers\GoogleDriveServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,
 
     ],
 
