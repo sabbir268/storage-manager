@@ -72,7 +72,8 @@ class SubCategoryController extends Controller
     public function edit(SubCategory $subcategory)
     {
         if ($subcategory) {
-            return view('dashboard.subcategory.edit', compact('subcategory'));
+            $categories = Category::all();
+            return view('dashboard.subcategory.edit', compact('subcategory', 'categories'));
         } else {
             toastr()->warning('Sub Category not found');
         }
@@ -87,16 +88,15 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCategory $subCategory)
+    public function update(Request $request, SubCategory $subcategory)
     {
-
-        $request->validate([
+        $data =  $request->validate([
+            'category_id' => 'required',
             'name' => 'required',
         ]);
 
-
-        if ($subCategory) {
-            if ($subCategory->update(['name' => $request->name])) {
+        if ($subcategory) {
+            if ($subcategory->update($data)) {
                 toastr()->success('Sub Category updated successfully');
             } else {
                 toastr()->error('Sub Category update failed');

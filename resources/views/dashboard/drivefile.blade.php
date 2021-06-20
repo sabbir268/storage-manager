@@ -23,7 +23,7 @@
             <div class="card file-manager-item folder">
                 <a href="{{route('drive.contents').'?path='.$dir['basename']}}">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="toArchive[]"
+                        <input type="checkbox" class="custom-control-input file-to-import" name="toArchive[]"
                             id="customCheck-{{$dir['basename']}}" />
                         <label class="custom-control-label" for="customCheck-{{$dir['basename']}}"></label>
                     </div>
@@ -50,7 +50,8 @@
             @foreach ($files as $file)
             <div class="card file-manager-item file">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck-{{$file['basename']}}" />
+                    <input type="checkbox" class="custom-control-input file-to-import"
+                        id="customCheck-{{$file['basename']}}" />
                     <label class="custom-control-label" for="customCheck-{{$file['basename']}}"></label>
                 </div>
                 <div class="card-img-top file-logo-wrapper">
@@ -79,3 +80,11 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function(){
+        $('.file-to-import')
+    })
+</script>
+@endpush

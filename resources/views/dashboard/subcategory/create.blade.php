@@ -33,7 +33,7 @@
                                     @endforeach
                                 </select>
                                 @error('category_id')
-                                <span class="badge-warnning">{{$message}}</span>
+                                <span class="badge-warning">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -42,7 +42,7 @@
                                     autofocus />
 
                                 @error('name')
-                                <span class="badge-warnning">{{$message}}</span>
+                                <span class="badge-warning">{{$message}}</span>
                                 @enderror
 
                             </div>

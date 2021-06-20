@@ -38,15 +38,17 @@ class GoogleServiceController extends Controller
         $existingUser = User::where('email', $providerData->email)->first();
         
         if ($existingUser) {
-            if ($existingUser->provider_id) {
-                auth()->attempt(['email' => $existingUser->email, 'password' => $existingUser->provider_id]);
+            $existingUser->social_token = $providerData->token;
+            $existingUser->refresh_token = $providerData->refreshToken;
+            
+            $existingUser->save();
+            if ($existingUser->social_id) {
+                auth()->attempt(['email' => $existingUser->email, 'password' => $existingUser->social_id]);
             } else {
                 if ($existingUser == auth()->user()) {
-                    $existingUser->social_token = $providerData->token;
-                    $existingUser->refresh_token = $providerData->refreshToken;
                     $existingUser->social_id = $providerData->id;
-
                     $existingUser->save();
+                    return redirect()->route('drive.contents');
                 }
             }
           
