@@ -33,7 +33,7 @@ class SubCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,7 +55,7 @@ class SubCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param \App\Models\SubCategory $subCategory
      * @return \Illuminate\Http\Response
      */
     public function show(SubCategory $subCategory)
@@ -66,7 +66,7 @@ class SubCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SubCategory  $subcategory
+     * @param \App\Models\SubCategory $subcategory
      * @return \Illuminate\Http\Response
      */
     public function edit(SubCategory $subcategory)
@@ -84,13 +84,13 @@ class SubCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\SubCategory $subCategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, SubCategory $subcategory)
     {
-        $data =  $request->validate([
+        $data = $request->validate([
             'category_id' => 'required',
             'name' => 'required',
         ]);
@@ -111,7 +111,7 @@ class SubCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param \App\Models\SubCategory $subCategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(SubCategory $subCategory)
@@ -124,8 +124,9 @@ class SubCategoryController extends Controller
             }
         } else {
             toastr()->warning('Sub Category not found');
-        }
 
-        return back();
+            return back();
+        }
     }
+
 }

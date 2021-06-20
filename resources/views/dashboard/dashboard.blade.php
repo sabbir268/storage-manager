@@ -22,7 +22,7 @@
                                 <span class="align-middle">Add New</span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="addNewFile">
-                                <div class="dropdown-item">
+                                <div class="dropdown-item" onclick="location.href='{{route('files.create')}}'">
                                     <div class="mb-0" for="file-upload">
                                         <i class="fa fa-laptop"></i> <i class="fa fa-arrow-right"></i>
                                         <i class="fa fa-cloud"></i>
@@ -43,8 +43,8 @@
                         <!-- sidebar list items starts  -->
                         <div class="sidebar-list">
                             <!-- links for file manager sidebar -->
-                            <div class="list-group">
-                                {{-- <div class="my-drive"></div> --}}
+                            {{-- <div class="list-group">
+                                <div class="my-drive"></div>
                                 <a href="javascript:void(0)" class="list-group-item list-group-item-action">
                                     <i data-feather="clock" class="mr-50 font-medium-3"></i>
                                     <span class="align-middle">Recents</span>
@@ -53,7 +53,7 @@
                                     <i data-feather="trash" class="mr-50 font-medium-3"></i>
                                     <span class="align-middle">Deleted Files</span>
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="list-group list-group-labels">
                                 <h6 class="section-label px-2 mb-1 d-flex justify-content-between">
                                     <span>Categories</span>
@@ -64,7 +64,8 @@
                                 $categories = \App\Models\Category::orderBy('id','asc')->limit(10)->get();
                                 @endphp
                                 @foreach ($categories as $category)
-                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
+                                <a href="{{route('dashboard')}}?category_id={{$category->id}}"
+                                    class="list-group-item list-group-item-action">
                                     <i data-feather="layers" class="mr-50 font-medium-3"></i>
                                     <span class="align-middle">{{$category->name}}</span>
                                 </a>
@@ -75,7 +76,7 @@
                                     <span class="align-middle">Create Category</span>
                                 </a>
 
-{{--                            Code for sub category --}}
+                                {{--                            Code for sub category --}}
                                 <h6 class="section-label px-2 mb-1 mt-3 d-flex justify-content-between">
                                     <span>Sub Categories</span>
                                     <a href="{{route('subcategory.index')}}"
@@ -85,7 +86,8 @@
                                 $subcategories = \App\Models\SubCategory::orderBy('id','asc')->limit(10)->get();
                                 @endphp
                                 @foreach ($subcategories as $subcategory)
-                                <a href="javascript:void(0)" class="list-group-item list-group-item-action">
+                                <a href="{{route('dashboard')}}?category_id={{$subcategory->category->id}}&sub_category_id={{$subcategory->id}}"
+                                    class="list-group-item list-group-item-action">
                                     <i data-feather="layers" class="mr-50 font-medium-3"></i>
                                     <span class="align-middle">{{$subcategory->name}}</span>
                                 </a>
@@ -281,40 +283,7 @@
                     </div>
                     <!-- File Info Sidebar Ends -->
 
-                    <!-- File Dropdown Starts-->
-                    <div class="dropdown-menu dropdown-menu-right file-dropdown">
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i data-feather="eye" class="align-middle mr-50"></i>
-                            <span class="align-middle">Preview</span>
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i data-feather="user-plus" class="align-middle mr-50"></i>
-                            <span class="align-middle">Share</span>
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i data-feather="copy" class="align-middle mr-50"></i>
-                            <span class="align-middle">Make a copy</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i data-feather="edit" class="align-middle mr-50"></i>
-                            <span class="align-middle">Rename</span>
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                            data-target="#app-file-manager-info-sidebar">
-                            <i data-feather="info" class="align-middle mr-50"></i>
-                            <span class="align-middle">Info</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i data-feather="trash" class="align-middle mr-50"></i>
-                            <span class="align-middle">Delete</span>
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i data-feather="alert-circle" class="align-middle mr-50"></i>
-                            <span class="align-middle">Report</span>
-                        </a>
-                    </div>
+
                     <!-- /File Dropdown Ends -->
 
                     <!-- All Modal Starts-->
