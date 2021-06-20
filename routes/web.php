@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [FileController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 
 Route::resource('category', CategoryController::class)->except('show');

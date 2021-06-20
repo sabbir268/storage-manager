@@ -114,8 +114,18 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubCategory $subCategory)
+    public function destroy(SubCategory $subcategory)
     {
-        //
+        if ($subcategory) {
+            if ($subcategory->delete()) {
+                toastr()->success('Category deleted successfully');
+            } else {
+                toastr()->error('Category delete failed');
+            }
+        } else {
+            toastr()->warning('Category not found');
+        }
+
+        return back();
     }
 }

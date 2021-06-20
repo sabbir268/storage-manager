@@ -13,9 +13,17 @@ class FileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $files = new File;
+        if ($request->has('category_id')) {
+            $files = $files->where('category_id', $request->category_id);
+        }
+        if ($request->has('sub_category_id')) {
+            $files = $files->where('sub_category_id', $request->sub_category_id);
+        }
+        $files = $files->paginate(20);
+        return view('dashboard.index', compact('files'));
     }
 
     /**
@@ -25,7 +33,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.files.create');
     }
 
     /**
@@ -36,7 +44,27 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'file' => 'required',
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'comment' => 'nullable',
+        ]);
+
+        if ($request->has('file')) {
+            $date['path'] = $request->file('file')->store('/', 'public');
+        }
+
+        $data['source'] = 'local';
+
+        if (File::create($data)) {
+            toastr()->success('File stored successfully!');
+        } else {
+            toastr()->error('File stored filed!');
+        }
+
+        return back();
     }
 
     /**
@@ -47,7 +75,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        return view('dashboard.files.show', compact('file'));
     }
 
     /**
@@ -58,7 +86,7 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        //
+        return view('dashboard.files.edit', compact('file'));
     }
 
     /**
@@ -70,7 +98,27 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'file' => 'nullable',
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'comment' => 'nullable',
+        ]);
+
+        if ($request->hasFile('file')) {
+            $date['path'] = $request->file('file')->store('/', 'public');
+        }
+
+        $data['source'] = 'local';
+
+        if ($file->update($data)) {
+            toastr()->success('File updated successfully!');
+        } else {
+            toastr()->error('File update filed!');
+        }
+
+        return back();
     }
 
     /**
@@ -81,7 +129,17 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        if ($file) {
+            if ($file->delete()) {
+                toastr()->success('File deleted successfully');
+            } else {
+                toastr()->error('File delete failed');
+            }
+        } else {
+            toastr()->warning('File not found');
+        }
+
+        return redirect()->route('dashboard');
     }
 
 
@@ -117,6 +175,7 @@ class FileController extends Controller
                     $newFile->category_id = $request->category_id;
                     $newFile->sub_category_id = $request->sub_category_id;
                     $newFile->source = 'drive';
+                    $newFile->path = '/storage/'.$filename;
                     $newFile->save();
                 } catch (\Throwable $th) {
                     return $th;
