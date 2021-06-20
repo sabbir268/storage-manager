@@ -89,14 +89,14 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, SubCategory $subCategory)
     {
-        ddd($request);
+
         $request->validate([
-            'category_id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
+
         if ($subCategory) {
-            if ($subCategory->update(['name' => $request->name, 'category_id'=> $request->category_id])) {
+            if ($subCategory->update(['name' => $request->name])) {
                 toastr()->success('Sub Category updated successfully');
             } else {
                 toastr()->error('Sub Category update failed');
