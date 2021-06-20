@@ -22,24 +22,18 @@
                                 <span class="align-middle">Add New</span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="addNewFile">
-                                <div class="dropdown-item" data-toggle="modal" data-target="#new-folder-modal">
-                                    <div class="mb-0">
-                                        <i data-feather="folder" class="mr-25"></i>
-                                        <span class="align-middle">Folder</span>
-                                    </div>
-                                </div>
                                 <div class="dropdown-item">
                                     <div class="mb-0" for="file-upload">
-                                        <i data-feather="upload-cloud" class="mr-25"></i>
-                                        <span class="align-middle">File Upload</span>
-                                        <input type="file" id="file-upload" hidden />
+                                        <i class="fa fa-laptop"></i> <i class="fa fa-arrow-right"></i>
+                                        <i class="fa fa-cloud"></i>
+                                        <span class="align-middle">From Local</span>
                                     </div>
                                 </div>
-                                <div class="dropdown-item">
+                                <div class="dropdown-item" onclick="location.href='{{route('drive.contents')}}'">
                                     <div for="folder-upload" class="mb-0">
-                                        <i data-feather="upload-cloud" class="mr-25"></i>
-                                        <span class="align-middle">Folder Upload</span>
-                                        <input type="file" id="folder-upload" webkitdirectory mozdirectory hidden />
+                                        <i class="fab fa-google"></i> <i class="fa fa-arrow-right"></i>
+                                        <i class="fa fa-cloud"></i>
+                                        <span class="align-middle">From Drive</span>
                                     </div>
                                 </div>
                             </div>
@@ -323,9 +317,9 @@
                     </div>
                     <!-- /File Dropdown Ends -->
 
-                    <!-- Create New Folder Modal Starts-->
-                    <div class="modal fade" id="new-folder-modal">
-                        <div class="modal-dialog modal-dialog-centered">
+                    <!-- All Modal Starts-->
+                    <div class="modal fade" id="add-file-from-drive">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">New Folder</h5>
@@ -346,7 +340,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Create New Folder Modal Ends -->
+                    <!-- /All Modal Modal Ends -->
 
                 </div>
             </div>

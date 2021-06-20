@@ -16,10 +16,11 @@
             <li class="nav-item dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">John
-                            Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img
-                            class="round" src="../../../theme//images/portrait/small/avatar-s-11.jpg" alt="avatar"
-                            height="40" width="40"><span class="avatar-status-online"></span></span>
+                    <div class="user-nav d-sm-flex d-none"><span
+                            class="user-name font-weight-bolder">{{auth()->user()->name}}</span><span
+                            class="user-status">User</span></div><span class="avatar"><img class="round"
+                            src="../../../theme//images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40"
+                            width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user"><a class="dropdown-item"
                         href="page-profile.html"><i class="mr-50" data-feather="user"></i>
@@ -33,8 +34,12 @@
                         Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="mr-50"
                             data-feather="credit-card"></i> Pricing</a>
                     <a class="dropdown-item" href="page-faq.html"><i class="mr-50" data-feather="help-circle"></i>
-                        FAQ</a><a class="dropdown-item" href="page-auth-login-v2.html"><i class="mr-50"
-                            data-feather="power"></i> Logout</a>
+                        FAQ</a><a class="dropdown-item" href="javascript::void(0)"
+                        onclick="getElementById('logoutForm').submit()"><i class="mr-50" data-feather="power"></i>
+                        Logout</a>
+                    <form action="{{url('logout')}}" id="logoutForm" method="POST">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>

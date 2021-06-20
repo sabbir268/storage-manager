@@ -34,10 +34,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('theme/css/themes/semi-dark-layout.css')}}">
 
     <!-- BEGIN: Page CSS-->
-{{--    @toastr_css--}}
+    {{--    @toastr_css--}}
     @stack('styles')
     <!-- END: Page CSS-->
-
+    @toastr_css
 
 
 </head>
@@ -84,6 +84,7 @@
 @stack('scripts')
 <!-- END: Page JS-->
 
+
 <script>
     $(window).on('load', function() {
             if (feather) {
@@ -98,5 +99,12 @@
 @jquery
 @toastr_js
 @toastr_render
+<script>
+    @if(count($errors) > 0)
+        @foreach($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+</script>
 
 </html>
